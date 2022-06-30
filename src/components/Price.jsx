@@ -1,14 +1,21 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import PriceCard from './PriceCard'
 
 const Container = styled.div`
-  
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
-const Price = props => {
+const Price = () => {
   return (
-    <div>Price</div>
+    <Container>
+      <PriceCard price="10" type="Basic"/>
+      <PriceCard price="20" type="Premium"/>
+      <PriceCard price="30" type="Advanced"/>
+    </Container>
   )
 }
 
