@@ -8,11 +8,17 @@ import Play from '../img/play.png'
 const Container = styled.div`
   display: flex;
   height: 100%;
+  @media only screen and (max-width:480px){
+    flex-direction: column;
+  }
 `
 
 const Left = styled.div`
   width : 50%;
   position: relative;
+  @media only screen and (max-width:480px){
+    display: none;
+  }
 `
 
 const Image = styled.img`
@@ -28,16 +34,26 @@ const Iframe = styled.iframe`
   bottom: 0;
   right: 0;
   margin: auto;
+  @media only screen and (max-width:480px){
+    width: 100%;
+  }
 `
 
 const Right = styled.div`
   width : 50%;
+  @media only screen and (max-width:480px){
+    width: 100%;
+  }
 `
 
 const Wrapper = styled.div`
   padding : 50px;
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width:480px){
+    padding: 20px;
+
+  }
 `
 
 const Title = styled.h1`
@@ -73,11 +89,31 @@ const Button = styled.button`
 const Icon = styled.img`
   width: 20px;
   margin-right: 10px;
+`
 
+const Model = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left : 0;
+  background-color: rgba(0, 0, 0, 0.5);
+`
+
+const CloseButton = styled.button`
+  position: absolute;
+  background-color: white;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  right: 5px;
+  top: 30%;
 `
 
 const Service = () => {
   const [open ,setOpen] = useState(false);
+  const smallScreen = window.screen.width <= 480 ? true : false;
+
   return (
     <Container>
       <Left>
@@ -103,6 +139,17 @@ const Service = () => {
           </Button>
         </Wrapper>
       </Right>
+      {smallScreen && open && (
+        <Model>
+           <Iframe 
+            open={open} 
+            src="https://www.youtube.com/embed/05BWsYqMiYE" 
+            title="YouTube video player" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            />
+          <CloseButton onClick={() => setOpen(false)}>Close</CloseButton>
+        </Model>
+      )}
     </Container>
   )
 }
